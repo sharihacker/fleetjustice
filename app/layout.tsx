@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   title: 'FleetJustice - Commercial Trucking Insurance & Legal Recovery',
   description: 'Professional commercial trucking insurance and 18-wheeler accident legal services. Hazmat liability, new authority quotes, and accident recovery. Get a free quote today.',
   keywords: 'commercial trucking insurance, 18-wheeler accident lawyer, hazmat liability, fleet insurance, owner-operator insurance, truck accident recovery, DOT compliance',
+  // ADD THIS SECTION BELOW
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png', // Optional: for mobile users
+  },
   openGraph: {
     title: 'FleetJustice - Commercial Trucking Insurance & Legal Recovery',
     description: 'Professional commercial trucking insurance and legal services nationwide.',
@@ -28,6 +34,8 @@ export default function RootLayout({
       <head>
         <JsonLd data={organizationSchema} />
         <JsonLd data={faqSchema} />
+        {/* Force the browser to recognize the icon immediately */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={inter.className}>
         <Navigation />

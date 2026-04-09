@@ -42,6 +42,7 @@ export default function RootLayout({
         <JsonLd data={faqSchema} />
         {/* Force the browser to recognize the icon immediately */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <script src="https://pl29101359.profitablecpmratenetwork.com/3d/a0/36/3da03618ef072d0da9c24cfb8af97881.js"></script>
       </head>
       <body className={inter.className}>
         <Navigation />

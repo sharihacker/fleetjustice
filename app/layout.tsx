@@ -39,25 +39,12 @@ export default function RootLayout({
       <head>
         <JsonLd data={organizationSchema} />
         <JsonLd data={faqSchema} />
-        {/* Force the browser to recognize the icon immediately */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        
-        {/* ADSTERRA POPUNDER SCRIPT */}
-        <script 
-          async 
-          src="https://pl29101359.profitablecpmratenetwork.com/3d/a0/36/3da03618ef072d0da9c24cfb8af97881.js"
-        ></script>
       </head>
       <body className={inter.className}>
         <Navigation />
         <main className="min-h-screen">{children}</main>
         <Footer />
-
-        {/* ADSTERRA SOCIAL BAR SCRIPT (Placed right before closing body tag) */}
-        <script 
-          type="text/javascript" 
-          src="https://pl29101362.profitablecpmratenetwork.com/21/99/e4/2199e440a6f96349f87615567133594d.js"
-        ></script>
       </body>
     </html>
   );

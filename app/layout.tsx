@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: 'FleetJustice - Commercial Trucking Insurance & Legal Recovery',
   description: 'Professional commercial trucking insurance and 18-wheeler accident legal services. Hazmat liability, new authority quotes, and accident recovery. Get a free quote today.',
   keywords: 'commercial trucking insurance, 18-wheeler accident lawyer, hazmat liability, fleet insurance, owner-operator insurance, truck accident recovery, DOT compliance',
-  // ADD THIS ICONS SECTION
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -42,12 +41,23 @@ export default function RootLayout({
         <JsonLd data={faqSchema} />
         {/* Force the browser to recognize the icon immediately */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <script src="https://pl29101359.profitablecpmratenetwork.com/3d/a0/36/3da03618ef072d0da9c24cfb8af97881.js"></script>
+        
+        {/* ADSTERRA POPUNDER SCRIPT */}
+        <script 
+          async 
+          src="https://pl29101359.profitablecpmratenetwork.com/3d/a0/36/3da03618ef072d0da9c24cfb8af97881.js"
+        ></script>
       </head>
       <body className={inter.className}>
         <Navigation />
         <main className="min-h-screen">{children}</main>
         <Footer />
+
+        {/* ADSTERRA SOCIAL BAR SCRIPT (Placed right before closing body tag) */}
+        <script 
+          type="text/javascript" 
+          src="https://pl29101362.profitablecpmratenetwork.com/21/99/e4/2199e440a6f96349f87615567133594d.js"
+        ></script>
       </body>
     </html>
   );

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'FleetJustice - Commercial Trucking Insurance & Legal Recovery',
   description: 'Professional commercial trucking insurance and 18-wheeler accident legal services. Hazmat liability, new authority quotes, and accident recovery. Get a free quote today.',
   keywords: 'commercial trucking insurance, 18-wheeler accident lawyer, hazmat liability, fleet insurance, owner-operator insurance, truck accident recovery, DOT compliance',
+  // ADD THIS ICONS SECTION
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -35,10 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <head>
         <JsonLd data={organizationSchema} />
         <JsonLd data={faqSchema} />
+        {/* Force the browser to recognize the icon immediately */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={inter.className}>

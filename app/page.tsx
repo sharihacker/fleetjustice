@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Scale, TrendingUp, CircleCheck as CheckCircle, DollarSign, Clock, Award, FileCheck, Truck, TriangleAlert as AlertTriangle, ArrowRight } from 'lucide-react';
+import { Shield, Scale, TrendingUp, CircleCheck as CheckCircle, DollarSign, Clock, Award, FileCheck, Truck, TriangleAlert as AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '@/lib/supabase';
@@ -27,68 +27,98 @@ export default function Home() {
         .eq('is_published', true)
         .order('display_order')
         .limit(4);
+
       if (data) setSettlements(data);
     }
     fetchSettlements();
   }, []);
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
   return (
-    <div className="bg-slate-950 text-white">
-      {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div className="bg-slate-950">
+      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-        
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-500/10 to-transparent"></div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6">
-                Protect Your <span className="text-amber-500">Fleet.</span>
+            <motion.div {...fadeInUp}>
+              <div className="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2 mb-6">
+                <Award className="h-4 w-4 text-amber-500" />
+                <span className="text-sm font-semibold text-amber-500">Rated #1 in Commercial Trucking</span>
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                Protect Your Fleet.
+                <span className="block text-amber-500">Secure Your Future.</span>
               </h1>
-              <p className="text-xl text-slate-400 mb-10 max-w-lg leading-relaxed">
-                Elite insurance and legal recovery for the trucking industry. Don't let a single accident stall your momentum.
+
+              <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                Professional commercial trucking insurance and legal recovery services. From hazmat liability to 18-wheeler accident claims, we've got your back on every mile.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact" className="w-full sm:w-auto">
-                  <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold w-full h-14 text-lg">
+                <Link href="/contact">
+                  <Button size="lg" className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 font-bold text-lg px-8 py-6 w-full sm:w-auto">
                     Get a Free Quote
                   </Button>
                 </Link>
-                <Link href="/services" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="border-slate-700 hover:bg-slate-800 w-full h-14 text-lg">
-                    View Services
+                <Link href="/contact">
+                  <Button size="lg" variant="outline" className="border-2 border-slate-600 text-white hover:bg-slate-800 text-lg px-8 py-6 w-full sm:w-auto">
+                    Consult an Expert
                   </Button>
                 </Link>
+              </div>
+
+              <div className="flex items-center space-x-8 mt-10 text-sm text-slate-400">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-5 w-5 text-amber-500" />
+                  <span>DOT Certified</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-5 w-5 text-amber-500" />
+                  <span>24/7 Support</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-5 w-5 text-amber-500" />
+                  <span>Nationwide Coverage</span>
+                </div>
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="hidden lg:block relative"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="hidden lg:block"
             >
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl blur opacity-25"></div>
-              <div className="relative bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="h-12 w-12 bg-amber-500/10 rounded-lg flex items-center justify-center">
-                    <Shield className="h-6 w-6 text-amber-500" />
+              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-2xl">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/20 rounded-xl p-6">
+                    <DollarSign className="h-8 w-8 text-amber-500 mb-3" />
+                    <p className="text-3xl font-bold text-white mb-1">$47M+</p>
+                    <p className="text-sm text-slate-400">Recovered in Claims</p>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold">24/7 Accident Recovery</h3>
-                    <p className="text-sm text-slate-400">Immediate legal support nationwide.</p>
+                  <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/20 rounded-xl p-6">
+                    <Truck className="h-8 w-8 text-blue-400 mb-3" />
+                    <p className="text-3xl font-bold text-white mb-1">15K+</p>
+                    <p className="text-sm text-slate-400">Fleets Protected</p>
                   </div>
-                </div>
-                <div className="space-y-4">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-amber-500" style={{ width: `${85 - i * 10}%` }}></div>
-                    </div>
-                  ))}
+                  <div className="bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/20 rounded-xl p-6">
+                    <Clock className="h-8 w-8 text-green-400 mb-3" />
+                    <p className="text-3xl font-bold text-white mb-1">24/7</p>
+                    <p className="text-sm text-slate-400">Claims Support</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/20 rounded-xl p-6">
+                    <Award className="h-8 w-8 text-purple-400 mb-3" />
+                    <p className="text-3xl font-bold text-white mb-1">98%</p>
+                    <p className="text-sm text-slate-400">Success Rate</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -96,38 +126,201 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SETTLEMENTS GRID */}
-      <section className="py-20 border-t border-slate-900">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl font-bold">Proven Results</h2>
-            <Link href="/results" className="text-amber-500 hover:underline flex items-center">
-              View All Settlements <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {settlements.map((s) => (
-              <Card key={s.id} className="bg-slate-900 border-slate-800">
-                <CardContent className="pt-6">
-                  <p className="text-amber-500 font-mono text-sm mb-2">{s.case_type}</p>
-                  <p className="text-2xl font-bold text-white mb-4">${(s.settlement_amount / 1000).toLocaleString()}k+</p>
-                  <p className="text-sm text-slate-400 line-clamp-2">{s.case_description}</p>
-                </CardContent>
-              </Card>
+      <section className="py-20 bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Types of Coverage We Provide
+            </h2>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+              Comprehensive insurance solutions tailored for every aspect of your commercial trucking operation.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: AlertTriangle,
+                title: 'Hazmat Liability',
+                description: 'Specialized coverage for hazardous materials transport with DOT compliance support and emergency response teams.',
+                link: '/insurance/hazmat-liability',
+                color: 'from-red-500 to-orange-500'
+              },
+              {
+                icon: Truck,
+                title: 'Fleet Insurance',
+                description: 'Complete protection for multi-vehicle operations, including cargo, liability, and physical damage coverage.',
+                link: '/insurance/hazmat-liability',
+                color: 'from-blue-500 to-cyan-500'
+              },
+              {
+                icon: Shield,
+                title: 'Owner-Operator',
+                description: 'Affordable coverage for independent operators, including new authority quotes and fast approval.',
+                link: '/insurance/new-authority-quotes',
+                color: 'from-amber-500 to-yellow-500'
+              }
+            ].map((coverage, index) => (
+              <motion.div
+                key={coverage.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link href={coverage.link}>
+                  <Card className="bg-slate-800 border-slate-700 hover:border-amber-500/50 transition-all duration-300 h-full group cursor-pointer">
+                    <CardContent className="p-8">
+                      <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${coverage.color} mb-6 group-hover:scale-110 transition-transform`}>
+                        <coverage.icon className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors">
+                        {coverage.title}
+                      </h3>
+                      <p className="text-slate-400 leading-relaxed">
+                        {coverage.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA SECTION */}
-      <section className="py-24 bg-amber-500">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl font-black text-slate-950 mb-8 uppercase italic">Ready to scale?</h2>
-          <Link href="/insurance">
-            <Button size="lg" className="bg-slate-950 text-white hover:bg-slate-900 px-12 py-8 rounded-none text-xl font-bold">
-              START YOUR QUOTE NOW
-            </Button>
-          </Link>
+      <section className="py-20 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Recent Settlements
+            </h2>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+              Real results for real clients. See how we've helped trucking companies recover millions.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {settlements.map((settlement, index) => (
+              <motion.div
+                key={settlement.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="bg-slate-800/50 border-slate-700 hover:border-amber-500/50 transition-all">
+                  <CardContent className="p-8">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <p className="text-sm text-amber-500 font-semibold mb-2">{settlement.case_type}</p>
+                        <p className="text-3xl font-bold text-white">
+                          ${(settlement.settlement_amount / 1000000).toFixed(2)}M
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm text-slate-400">Resolved in</p>
+                        <p className="text-xl font-semibold text-white">{settlement.resolution_time_days} days</p>
+                      </div>
+                    </div>
+                    <p className="text-slate-300 leading-relaxed">
+                      {settlement.case_description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/legal/18-wheeler-accident-recovery">
+              <Button size="lg" variant="outline" className="border-2 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-slate-900">
+                View All Case Results
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Industry Compliance & Expertise
+            </h2>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+              Stay compliant with ever-changing DOT regulations while maximizing your protection.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: FileCheck, title: 'DOT Compliance', description: 'Full regulatory support' },
+              { icon: Shield, title: 'FMCSA Certified', description: 'Industry-approved coverage' },
+              { icon: Scale, title: 'Legal Defense', description: '24/7 legal support team' },
+              { icon: TrendingUp, title: 'Claims Success', description: '98% approval rate' }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="bg-slate-800 border-slate-700 text-center h-full">
+                  <CardContent className="p-6">
+                    <item.icon className="h-12 w-12 text-amber-500 mx-auto mb-4" />
+                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-slate-400 text-sm">{item.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-to-br from-amber-500 to-amber-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              Ready to Protect Your Fleet?
+            </h2>
+            <p className="text-xl text-slate-800 mb-8">
+              Get a free quote in minutes. No obligations, just honest protection for your business.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-lg px-8 py-6">
+                  Get Free Quote
+                </Button>
+              </Link>
+              <Link href="/estimator">
+                <Button size="lg" variant="outline" className="border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-bold text-lg px-8 py-6">
+                  Try Insurance Estimator
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

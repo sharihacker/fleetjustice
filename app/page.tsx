@@ -23,6 +23,7 @@ export default function Home() {
   const [settlements, setSettlements] = useState<Settlement[]>([]);
 
   useEffect(() => {
+    // 1. FETCH SETTLEMENTS
     async function fetchSettlements() {
       const { data } = await supabase
         .from('settlements')
@@ -34,6 +35,20 @@ export default function Home() {
       if (data) setSettlements(data);
     }
     fetchSettlements();
+
+    // 2. LOAD NATIVE BANNER SCRIPT DYNAMICALLY
+    const script = document.createElement('script');
+    script.src = "https://pl29101361.profitablecpmratenetwork.com/4d1cb6653e89bec186da660bb20185fd/invoke.js";
+    script.async = true;
+    script.setAttribute('data-cfasync', 'false');
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup on unmount
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
   }, []);
 
   const fadeInUp = {
@@ -46,7 +61,7 @@ export default function Home() {
     <div className="bg-slate-950">
       {/* HERO SECTION */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 lg:py-32 overflow-hidden">
-        {/* GHOST OVERLAY: Makes the whole top area clickable for money */}
+        {/* GHOST OVERLAY */}
         <a href={MONEY_LINK} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 cursor-default">
             <span className="sr-only">Click for details</span>
         </a>
@@ -165,6 +180,17 @@ export default function Home() {
                 </a>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NATIVE BANNER AD SECTION */}
+      <section className="py-10 bg-slate-950 border-y border-slate-800">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col items-center">
+             <p className="text-xs text-slate-500 mb-4 tracking-widest uppercase">Sponsored Content</p>
+             {/* THE NATIVE BANNER CONTAINER */}
+             <div id="container-4d1cb6653e89bec186da660bb20185fd" className="w-full min-h-[250px]"></div>
           </div>
         </div>
       </section>

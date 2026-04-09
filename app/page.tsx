@@ -33,68 +33,62 @@ export default function Home() {
     }
     fetchSettlements();
 
-    // 1. LOAD NATIVE BANNER SCRIPT
+    // 1. LOAD NATIVE BANNER
     const nativeScript = document.createElement('script');
     nativeScript.src = "https://pl29101361.profitablecpmratenetwork.com/4d1cb6653e89bec186da660bb20185fd/invoke.js";
     nativeScript.async = true;
     nativeScript.setAttribute('data-cfasync', 'false');
     document.body.appendChild(nativeScript);
 
-    // 2. LOAD 468x60 BANNER SCRIPT & OPTIONS
-    // We define the options on the window object so the external script can find them
-    (window as any).atOptions = {
+    // 2. LOAD 468x60 BANNER (Defining Options for it)
+    (window as any).atOptions468 = {
       'key': 'f11bba5f756a486e982ed51d36bdf5c4',
       'format': 'iframe',
       'height': 60,
       'width': 468,
       'params': {}
     };
+    const banner468 = document.createElement('script');
+    banner468.src = "https://www.highperformanceformat.com/f11bba5f756a486e982ed51d36bdf5c4/invoke.js";
+    banner468.async = true;
+    document.body.appendChild(banner468);
 
-    const bannerScript = document.createElement('script');
-    bannerScript.src = "https://www.highperformanceformat.com/f11bba5f756a486e982ed51d36bdf5c4/invoke.js";
-    bannerScript.async = true;
-    document.body.appendChild(bannerScript);
+    // 3. LOAD 728x90 BANNER (Defining Options for it)
+    (window as any).atOptions = {
+      'key': 'd65587f8ab81f4df3128c4aca110ca61',
+      'format': 'iframe',
+      'height': 90,
+      'width': 728,
+      'params': {}
+    };
+    const banner728 = document.createElement('script');
+    banner728.src = "https://www.highperformanceformat.com/d65587f8ab81f4df3128c4aca110ca61/invoke.js";
+    banner728.async = true;
+    document.body.appendChild(banner728);
 
     return () => {
       if (document.body.contains(nativeScript)) document.body.removeChild(nativeScript);
-      if (document.body.contains(bannerScript)) document.body.removeChild(bannerScript);
+      if (document.body.contains(banner468)) document.body.removeChild(banner468);
+      if (document.body.contains(banner728)) document.body.removeChild(banner728);
     };
   }, []);
 
   return (
     <div className="bg-slate-950">
       
-      {/* 468x60 TOP BANNER AD PLACEMENT */}
+      {/* AD: 468x60 TOP BANNER */}
       <div className="w-full bg-slate-900 py-2 flex justify-center border-b border-slate-800">
-        <div id="atContainer-f11bba5f756a486e982ed51d36bdf5c4">
-           {/* The script will inject the iframe here */}
-        </div>
+        <div id="atContainer-f11bba5f756a486e982ed51d36bdf5c4"></div>
       </div>
 
       {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 lg:py-32 overflow-hidden">
-        <a href={MONEY_LINK} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 cursor-default">
-            <span className="sr-only">Click for details</span>
-        </a>
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-        {/* ... (rest of hero content) ... */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="z-20">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                  Protect Your Fleet. <span className="text-amber-500">Secure Your Future.</span>
-                </h1>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="bg-amber-500 text-slate-900 font-bold px-8 py-6">Get a Free Quote</Button>
-                </div>
-              </div>
-           </div>
-        </div>
+      <section className="relative py-20 lg:py-32 overflow-hidden">
+        {/* ... (Hero Content) ... */}
       </section>
 
       {/* COVERAGE SECTION */}
       <section className="py-20 bg-slate-900">
-        {/* ... (Your coverage cards) ... */}
+        {/* ... (Coverage Cards) ... */}
       </section>
 
       {/* NATIVE BANNER AD SECTION */}
@@ -107,12 +101,19 @@ export default function Home() {
 
       {/* SETTLEMENTS SECTION */}
       <section className="py-20 bg-slate-950">
-        {/* ... (Your settlements map) ... */}
+        {/* ... (Settlements Mapping) ... */}
+      </section>
+
+      {/* AD: 728x90 BOTTOM LEADERBOARD */}
+      <section className="py-12 bg-slate-900 flex justify-center border-y border-slate-800">
+         <div id="atContainer-d65587f8ab81f4df3128c4aca110ca61">
+           {/* Adsterra script will inject the iframe here */}
+         </div>
       </section>
 
       {/* FINAL CALL TO ACTION */}
       <section className="py-20 bg-gradient-to-br from-amber-500 to-amber-600">
-         {/* ... (CTA Buttons) ... */}
+         {/* ... (CTA Content) ... */}
       </section>
     </div>
   );

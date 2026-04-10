@@ -10,16 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/insurance`,
+      url: `${baseUrl}/https:/insurance/hazmat-liability`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/insurance/hazmat-liability`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/legal/18-wheeler-accident-recovery`,

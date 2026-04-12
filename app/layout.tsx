@@ -44,7 +44,6 @@ export default function RootLayout({
       <head>
         <JsonLd data={organizationSchema} />
         <JsonLd data={faqSchema} />
-        {/* Force the browser to recognize the icon immediately */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={inter.className}>
